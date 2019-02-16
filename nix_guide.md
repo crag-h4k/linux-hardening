@@ -4,10 +4,10 @@ Always remember man pages
 
 #### Package managers
 
-Debian/Ubuntu = apt/apt-get
-Metasploitable = apt-get
-Red Hat/Cent-OS/Fedora/Amazon Linux = yum
-Arch Linux = pacman
+	Debian/Ubuntu = apt/apt-get
+	Metasploitable = apt-get
+	Red Hat/Cent-OS/Fedora/Amazon Linux = yum
+	Arch Linux = pacman
 
 #### Basic IP Tables
 
@@ -127,83 +127,21 @@ systemctl condrestart frobozz
 
 ###### Tells whether a service is currently running.
 
-service frobozz status
-systemctl status frobozz
+service $Service-name status
+systemctl status $Service-name
 
 ls /etc/rc.d/init.d/
-systemctl (or) systemctl list-unit-files --type=service (or) 
+
+systemctl list-unit-files
+
 ls /lib/systemd/system/*.service /etc/systemd/system/*.service
-Used to list the services that can be started or stopped 
-Used to list all the services and other units
-chkconfig frobozz on
-systemctl enable frobozz
-Turn the service on, for start at next boot, or other trigger.
-chkconfig frobozz off
-systemctl disable frobozz
-Turn the service off for the next reboot, or any other trigger.
-chkconfig frobozz
-systemctl is-enabled frobozz
-Used to check whether a service is configured to start or not in the current environment.
-chkconfig --list
-systemctl list-unit-files --type=service (or) ls /etc/systemd/system/*.wants/
-Print a table of services that lists which runlevels each is configured on or off
-chkconfig --list | grep 5:on
-systemctl list-dependencies graphical.target
-Print a table of services that will be started when booting into graphical mode
-chkconfig frobozz --list
-ls /etc/systemd/system/*.wants/frobozz.service
-Used to list what levels this service is configured on or off
-chkconfig frobozz --add
-systemctl daemon-reload
-Used when you create a new service file or modify any configuration
 
+chkconfig $Service-name
 
-
-How to deal with outdated machines
-
-Set up Docker
-Splunk (forwarder and local)
-IDS
-Look up Docker official stuff and Ubuntu (DigitalOcean in the folder)
-
-Cobalt Strike
-
-IDS:
-Fail2ban
-Psad
-Bro && broctl
-Suricata
-Snrt
-OSSec
-
-Windows
-inetpub folder (only with IIS)
-
-sysmon (can recreate whole machine)
-
-event logs (registry)
-
-prefetch files
-
-Network
-Wireshark
-
-Intrusion Detection System - Fireeye HX device
-
-TCP Dump
-	To print traffic between helios and either hot or ace:
-tcpdump host helios and \( hot or ace \)
-
-
-To print all IP packets between ace and any host except helios:
-tcpdump ip host ace and not helios
-
-Netcat (nc) - look at ports and banners
-
-
-
-
-
-
-
+### IDS:
+	
+	Fail2ban
+	Psad
+	Bro && broctl
+	Suricata
 
