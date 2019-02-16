@@ -1,6 +1,6 @@
 ### General:
 
-Always remember man pages
+    Always remember man pages
 
 #### Package managers
 
@@ -49,7 +49,9 @@ Always remember man pages
     netstat -tulpna
 
 #### New User Configuration files 
-	
+    /etc/skel
+    /etc/adduser.conf
+
 ##### To add a new user
 
     useradd <username>
@@ -75,7 +77,12 @@ Always remember man pages
 
 #### Delete the user record from /etc/passwd	
 
+#### Disable login the user record from /etc/passwd	
+    
+    /bin/nologin
+
 ##### Lock account and make it inaccessible
+
 
     passwd <username> -l -expiredate 1
 
@@ -83,7 +90,7 @@ Always remember man pages
 
 ##### Find String in all Files
    
-   grep -rnw <pattern> <path>
+    grep -rnw <pattern> <path>
 
 #### Killing Processes
 
@@ -92,9 +99,7 @@ Always remember man pages
 
 #### System Commands
 
-##### Sysvinit Command
-
-##### Systemd Commands
+##### Sysvinit Command & Systemd Commands
 
 ###### Used to start a service (not reboot persistent)
 
@@ -116,27 +121,27 @@ Always remember man pages
 
 ###### When supported, reloads the config file without interrupting pending operations.
 
-service frobozz reload
-systemctl reload frobozz
+    service frobozz reload
+    systemctl reload frobozz
 
 
 ###### Restarts if the service is already running.
 
-service frobozz condrestart
-systemctl condrestart frobozz
+    service frobozz condrestart
+    systemctl condrestart frobozz
 
 ###### Tells whether a service is currently running.
 
-service $Service-name status
-systemctl status $Service-name
+    service $Service-name status
+    systemctl status $Service-name
 
-ls /etc/rc.d/init.d/
+    ls /etc/rc.d/init.d/
 
-systemctl list-unit-files
+    systemctl list-unit-files
 
-ls /lib/systemd/system/*.service /etc/systemd/system/*.service
+    ls /lib/systemd/system/*.service /etc/systemd/system/*.service
 
-chkconfig $Service-name
+    chkconfig $Service-name
 
 ### IDS:
 	
@@ -145,3 +150,31 @@ chkconfig $Service-name
 	Bro && broctl
 	Suricata
 
+
+### Check cronjobs
+
+    crontab -l
+
+#### For all users
+
+    for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l; done
+
+### Mysql
+
+    mysql_secure_installation
+
+    mysql --user=root mysql -p
+
+    SELECT User FROM mysql.user;
+
+    ALTER USER dbadmin@localhost IDENTIFIED BY 'littlewhale';
+
+### Postgres
+
+#### Run query from command line: *username is usually postgres
+
+    psql -U username -d mydatabase -c 'SELECT * FROM mytable'
+
+#### This query below changes a users account with name super
+
+    ALTER ROLE super WITH PASSWORD 'secret123';
