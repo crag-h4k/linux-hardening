@@ -1,0 +1,87 @@
+"deadlift1226 vim config
+"test
+set nocompatible
+"syntax on
+filetype plugin indent on
+
+set number
+set mouse+=a
+set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching
+set incsearch		" Incremental search
+set autowrite		" Automatically save before commands like :next and :make
+set hidden		" Hide buffers when they are abandoned
+"for folding
+"""""fold and unfold all under cursor 
+nnoremap <Space> za
+vnoremap <Space> za
+"""""Refocus fold
+nnoremap ,z zMzvzz
+"""""unfold top regardless of cursor location
+nnoremap Z zCzO
+set foldmethod=indent
+set foldnestmax=10
+set foldlevel=0
+"let any_fold_activate=0
+set nofoldenable
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
+
+"security, remember :X to encrypt, to remove passwd :X and leave blank
+setlocal cm=blowfish2 
+
+"fix backspace errors
+set backspace=indent,eol,start
+
+set wildmenu
+set wildmode=list:longest,full
+
+"proper tab
+set smarttab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+"proper indent
+set ai
+set si
+set wrap
+"no swapfile or backup, be careful ;)
+set noswapfile
+set nobackup
+set nowritebackup
+
+" no annoying bell
+set noerrorbells
+set novisualbell
+set tm=500
+
+"shortcuts and mappings
+nmap db <ESC>:+,$d
+nmap fr <ESC>:%s///gc
+" inoremap jj <ESC>
+" typos
+command! Q q
+command! W w
+command! WQ wq
+command! Wq wq
+
+"Plug-ins
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle 
+set updatetime=500
+"colors
+set t_Co=256
+syntax enable
+colorscheme dracula
+"hi Normal ctermfg=42
+"hi LineNr ctermfg=68
+" hi Folded ctermfg=16
+"hi Function ctermfg=105
+"hi NonText ctermfg=93
+"hi Comment ctermfg=23
+"hi Statement ctermfg=87
+"hi Preproc ctermfg=183
+"hi Type ctermfg=16
+"hi Constant ctermfg=128
+"hi  ctermfg=
+"append at he end of line
